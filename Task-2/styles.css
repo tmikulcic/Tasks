@@ -1,0 +1,168 @@
+/* Global reset */
+html,
+body {
+  display: flex;
+  margin: 0;
+  border: 0;
+}
+
+h1,
+a,
+p {
+  margin: 0;
+  border: 0;
+}
+
+/* Base styles */
+body {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ebebeb;
+  font-family: Barlow Condensed;
+}
+
+.card {
+  background-color: #fff;
+  border: 64px;
+  width: 100%;
+}
+
+.card__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 64px;
+}
+
+.card__text--title {
+  text-transform: uppercase;
+  font-size: 54px;
+  font-weight: 600;
+  line-height: 59.4px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-bottom: 16px;
+}
+
+.card__text--desc {
+  font-family: Rajdhani;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31.2px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-bottom: 16px;
+}
+
+.card__text--link {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  text-decoration: underline;
+}
+
+.card__text--link:link,
+.card__text--link:visited {
+  color: black;
+}
+
+.card__text--link:hover {
+  color: orange;
+}
+
+.card__image {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__image__main {
+  text-align: center;
+  max-width: 360px;
+}
+
+.card__image__cluster {
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.main-image {
+  width: 360px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card__image__title {
+  width: 100%;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 39.6px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+/* Responsive styles */
+@media (min-width: 1441px) {
+  .card__image {
+    justify-content: space-evenly;
+    margin: 64px;
+  }
+}
+@media (max-width: 1440px) {
+  .card__image {
+    margin: 64px;
+  }
+}
+
+@media (max-width: 1439px) {
+  .main-image {
+    width: 304px;
+    height: 304px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card__image {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .card {
+    border: 36px;
+  }
+
+  .card__image__title {
+    font-size: 24px;
+  }
+
+  .card__text--title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .card__text--desc {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .card__text--link {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .card__image__main {
+    margin-bottom: 64px;
+  }
+}
