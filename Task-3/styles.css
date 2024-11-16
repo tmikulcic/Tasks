@@ -1,7 +1,6 @@
 /* CSS variables */
 :root {
   --color-background: #f3ede5;
-  --button-text-color: #fff;
   --slide-width-desktop: 468px;
   --slide-height-desktop: 585px;
   --slide-width-mobile: 343px;
@@ -40,7 +39,7 @@ custom-carousel,
 #toggle-swiper {
   padding: 12px;
   background-color: black;
-  color: #fff;
+  color: var(--color-background);
   border: 0;
   border-radius: 8px;
 }
@@ -56,13 +55,13 @@ custom-carousel,
   }
 
   .swiper {
-    height: 777px;
+    width: 100%;
+    height: 100%;
   }
 
   .swiper-slide {
     max-width: var(--slide-width-desktop);
     min-width: var(--slide-width-desktop);
-    margin: 0px;
     padding-top: 96px;
     padding-bottom: 96px;
   }

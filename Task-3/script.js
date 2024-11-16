@@ -41,7 +41,7 @@ class CarouselElement extends HTMLElement {
       .map(
         (img) => `
         <div class="swiper-slide">
-          <img src="${img.trim()}" />
+            <img src="${img.trim()}" />
         </div>`
       )
       .join('');
@@ -52,6 +52,11 @@ class CarouselElement extends HTMLElement {
     let config = this.getSwiperConfig();
 
     this.swiperInstance = new Swiper(this.querySelector('.swiper'), config);
+
+    this.swiperInstance.on('slideChange', () => {
+      console.log('Active slide index:', this.swiperInstance.activeIndex);
+    });
+
     this.isActive = true;
     this.updateToggleButton();
   }
@@ -82,6 +87,7 @@ class CarouselElement extends HTMLElement {
         spaceBetween: 8,
         slidesOffsetBefore: 16,
         slidesOffsetAfter: 16,
+        centeredSlides: true,
         grabCursor: true,
         navigation: {
           nextEl: '.custom-next',
