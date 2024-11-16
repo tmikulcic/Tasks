@@ -3,14 +3,16 @@ class CarouselElement extends HTMLElement {
     super();
     this.swiperInstance = null;
     this.isActive = false; // Track if the Swiper is active
+    this.lastWidth = window.innerWidth;
   }
 
   connectedCallback() {
     this.render();
     this.setupToggleButton();
+    this.setupResizeListener();
   }
 
-  // HTML elements for rendering
+  // Renders the HTML structure of the carousel
   render() {
     this.innerHTML = `
       <div class="button-container">
@@ -32,6 +34,7 @@ class CarouselElement extends HTMLElement {
     `;
   }
 
+  // Renders slides based on the `images` attribute
   renderSlides() {
     const images = this.getAttribute('images').split(',');
     return images
@@ -44,13 +47,23 @@ class CarouselElement extends HTMLElement {
       .join('');
   }
 
-  // Swiper configuration
+  // Initializes the Swiper instance with dynamic configuration
   initializeCarousel() {
-    const config = {
+    let config = this.getSwiperConfig();
+
+    this.swiperInstance = new Swiper(this.querySelector('.swiper'), config);
+    this.isActive = true;
+    this.updateToggleButton();
+  }
+
+  // Adjusts configuration based on screen width
+  getSwiperConfig() {
+    // Desktop layout configuration
+    let config = {
       slidesPerView: 3,
+      spaceBetween: 8,
       slidesOffsetBefore: 64,
       slidesOffsetAfter: 64,
-      spaceBetween: 8,
       grabCursor: true,
       navigation: {
         nextEl: '.custom-next',
@@ -60,21 +73,31 @@ class CarouselElement extends HTMLElement {
         el: '.swiper-pagination',
         clickable: true,
       },
-      breakpoints: {
-        768: {
-          direction: 'vertical',
-        },
-        769: {
-          direction: 'horizontal',
-        },
-      },
     };
 
-    this.swiperInstance = new Swiper(this.querySelector('.swiper'), config);
-    this.isActive = true;
-    this.updateToggleButton();
+    // Mobile layout configuration
+    if (window.innerWidth <= 425) {
+      config = {
+        slidesPerView: 1,
+        spaceBetween: 8,
+        slidesOffsetBefore: 16,
+        slidesOffsetAfter: 16,
+        grabCursor: true,
+        navigation: {
+          nextEl: '.custom-next',
+          prevEl: '.custom-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      };
+    }
+
+    return config;
   }
 
+  // Destroys the Swiper instance
   destroyCarousel() {
     if (this.swiperInstance) {
       this.swiperInstance.destroy(true, true);
@@ -84,6 +107,7 @@ class CarouselElement extends HTMLElement {
     }
   }
 
+  // Sets up the toggle button functionality
   setupToggleButton() {
     const toggleButton = this.querySelector('#toggle-swiper');
     toggleButton.addEventListener('click', () => {
@@ -97,11 +121,28 @@ class CarouselElement extends HTMLElement {
     });
   }
 
+  // Updates the toggle button text based on the Swiper's state
   updateToggleButton() {
     const toggleButton = this.querySelector('#toggle-swiper');
     toggleButton.textContent = this.isActive ? 'Deactivate Carousel' : 'Activate Carousel';
   }
+
+  // Re-initializes Swiper if the width crosses 425px threshold
+  setupResizeListener() {
+    window.addEventListener('resize', () => {
+      const currentWidth = window.innerWidth;
+      if ((this.lastWidth <= 425 && currentWidth > 425) || (this.lastWidth > 425 && currentWidth <= 425)) {
+        if (this.isActive) {
+          this.destroyCarousel();
+          this.querySelector('.swiper-container').style.display = 'none';
+          this.querySelector('.swiper-container').style.display = 'block';
+          this.initializeCarousel();
+        }
+      }
+      this.lastWidth = currentWidth;
+    });
+  }
 }
 
-// Define the custom element
+// Initialize carousel
 customElements.define('custom-carousel', CarouselElement);
