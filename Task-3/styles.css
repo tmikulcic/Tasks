@@ -1,3 +1,8 @@
+/* CSS variables */
+:root {
+  --color-background: #f3ede5;
+}
+
 html,
 body {
   position: relative;
@@ -12,27 +17,46 @@ body {
   padding: 0;
 }
 
+custom-carousel,
+.main-content,
+.swiper,
+.swiper-slide,
+.button-container {
+  background: var(--color-background);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  margin-bottom: 2px;
+}
+
+#toggle-swiper {
+  padding: 4px;
+}
+
 .main-content {
   padding: 96px 0px;
-  background: #f3ede5;
 }
 
 .swiper {
-  background: #f3ede5;
-  height: 585px;
+  height: 777px;
 }
 
 .swiper-slide {
-  background: #fff;
   max-width: 468px;
   min-width: 468px;
   margin: 0px;
+  padding-top: 96px;
+  padding-bottom: 96px;
 }
 
 .swiper-slide img {
   display: block;
   width: 468px;
-  height: 100%;
+  height: 585px;
   object-fit: cover;
 }
 
