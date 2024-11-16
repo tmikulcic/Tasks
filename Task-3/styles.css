@@ -1,6 +1,11 @@
 /* CSS variables */
 :root {
   --color-background: #f3ede5;
+  --button-text-color: #fff;
+  --slide-width-desktop: 468px;
+  --slide-height-desktop: 585px;
+  --slide-width-mobile: 343px;
+  --slide-height-mobile: 428px;
 }
 
 html,
@@ -12,7 +17,7 @@ body {
 body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
-  color: #000;
+  color: black;
   margin: 0;
   padding: 0;
 }
@@ -40,42 +45,43 @@ custom-carousel,
   border-radius: 8px;
 }
 
-.main-content {
-  padding: 96px 0px;
-}
-
-.swiper {
-  height: 777px;
-}
-
-.swiper-slide {
-  max-width: 468px;
-  min-width: 468px;
-  margin: 0px;
-  padding-top: 96px;
-  padding-bottom: 96px;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 468px;
-  height: 585px;
-  object-fit: cover;
-}
-
-.swiper-button-prev {
-  left: 68px !important;
-  opacity: 1 !important;
-}
-
-.swiper-button-next {
-  right: 55px !important;
-  opacity: 1 !important;
-}
-
 .swiper-button-prev:after,
 .swiper-button-next:after {
   display: none;
+}
+
+@media (min-width: 426px) {
+  .main-content {
+    padding: 96px 0px;
+  }
+
+  .swiper {
+    height: 777px;
+  }
+
+  .swiper-slide {
+    max-width: var(--slide-width-desktop);
+    min-width: var(--slide-width-desktop);
+    margin: 0px;
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  .swiper-slide img {
+    width: var(--slide-width-desktop);
+    height: var(--slide-height-desktop);
+    object-fit: cover;
+  }
+
+  .swiper-button-prev {
+    left: 68px !important;
+    opacity: 1 !important;
+  }
+
+  .swiper-button-next {
+    right: 55px !important;
+    opacity: 1 !important;
+  }
 }
 
 @media (max-width: 425px) {
@@ -84,13 +90,17 @@ custom-carousel,
   }
 
   .swiper-slide {
-    max-width: 323px;
-    min-width: 323px;
+    max-width: var(--slide-width-mobile);
+    min-width: var(--slide-width-mobile);
+    margin: 0px;
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
 
   .swiper-slide img {
-    width: 323px;
-    height: 428px;
+    width: var(--slide-width-mobile);
+    height: var(--slide-height-mobile);
+    object-fit: cover;
   }
 
   .swiper-button-prev {
