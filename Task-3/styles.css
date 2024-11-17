@@ -72,14 +72,12 @@ custom-carousel,
     object-fit: cover;
   }
 
-  .swiper-button-prev {
-    left: 68px !important;
-    opacity: 1 !important;
+  div.swiper-button-prev.custom-prev {
+    left: 68px;
   }
 
-  .swiper-button-next {
-    right: 55px !important;
-    opacity: 1 !important;
+  div.swiper-button-next.custom-next {
+    right: 55px;
   }
 }
 
@@ -102,13 +100,13 @@ custom-carousel,
     object-fit: cover;
   }
 
-  .swiper-button-prev {
-    top: 300px !important;
-    left: 36px !important;
+  div.swiper-button-prev.custom-prev {
+    top: 300px;
+    left: 36px;
   }
 
-  .swiper-button-next {
-    top: 300px !important;
-    right: 48px !important;
+  div.swiper-button-next.custom-next {
+    top: 300px;
+    right: 48px;
   }
 }

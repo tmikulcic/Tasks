@@ -63,12 +63,19 @@ class CarouselElement extends HTMLElement {
 
   // Adjusts configuration based on screen width
   getSwiperConfig() {
-    // Desktop layout configuration
-    let config = {
-      slidesPerView: 3,
+    // Get single slide element width
+    const swiperSlide = document.querySelector('.swiper-slide');
+    const slideWidth = swiperSlide.getBoundingClientRect().width;
+
+    let isMobile = window.innerWidth <= 425;
+
+    //  Layout configuration
+    const config = {
+      slidesPerView: window.innerWidth / slideWidth,
       spaceBetween: 8,
-      slidesOffsetBefore: 64,
-      slidesOffsetAfter: 64,
+      centeredSlides: isMobile,
+      slidesOffsetBefore: isMobile ? 0 : 64,
+      slidesOffsetAfter: isMobile ? 0 : 64,
       grabCursor: true,
       navigation: {
         nextEl: '.custom-next',
@@ -80,25 +87,7 @@ class CarouselElement extends HTMLElement {
       },
     };
 
-    // Mobile layout configuration
-    if (window.innerWidth <= 425) {
-      config = {
-        slidesPerView: 1,
-        spaceBetween: 8,
-        slidesOffsetBefore: 16,
-        slidesOffsetAfter: 16,
-        centeredSlides: true,
-        grabCursor: true,
-        navigation: {
-          nextEl: '.custom-next',
-          prevEl: '.custom-prev',
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-      };
-    }
+    console.log(window.innerWidth / slideWidth);
 
     return config;
   }
@@ -137,14 +126,13 @@ class CarouselElement extends HTMLElement {
   setupResizeListener() {
     window.addEventListener('resize', () => {
       const currentWidth = window.innerWidth;
-      if ((this.lastWidth <= 425 && currentWidth > 425) || (this.lastWidth > 425 && currentWidth <= 425)) {
-        if (this.isActive) {
-          this.destroyCarousel();
-          this.querySelector('.swiper-container').style.display = 'none';
-          this.querySelector('.swiper-container').style.display = 'block';
-          this.initializeCarousel();
-        }
+      // if ((this.lastWidth <= 425 && currentWidth > 425) || (this.lastWidth > 425 && currentWidth <= 425)) {
+      if (this.isActive) {
+        this.destroyCarousel();
+        this.querySelector('.swiper-container').style.display = 'block';
+        this.initializeCarousel();
       }
+      // }
       this.lastWidth = currentWidth;
     });
   }
