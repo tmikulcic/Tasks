@@ -54,7 +54,6 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  max-width: 1440px;
   background-color: var(--color-background);
   overflow: hidden;
   margin-top: 200vh;
@@ -91,6 +90,7 @@ body {
   align-items: center;
   background-color: var(--color-background);
   text-align: center;
+  margin: 16px;
 }
 
 .card__title {
