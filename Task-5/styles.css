@@ -1,3 +1,20 @@
+/* CSS Variables */
+:root {
+  --primary-color: #48bb78;
+  --secondary-color: #fcd34d;
+  --bg-color: #f7fafc;
+  --text-color: #4a5568;
+  --dark-bg-color: #1a202c;
+  --light-bg-color: #e5e5e5;
+  --accent-color: #2f855a;
+  --accent-hover-color: #38a169;
+  --highlight-color: #fbbf24;
+  --dark-text-color: #e0e0e0;
+  --border-color: #2d3748;
+  --footer-bg-color: #1a202c;
+}
+
+/* Base styles */
 h1 {
   margin: 0;
   padding: 0;
@@ -33,7 +50,7 @@ a {
   margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
-  color: white;
+  color: var(--dark-text-color);
   padding: 2rem;
 }
 
@@ -47,11 +64,11 @@ a {
 }
 
 .local-text {
-  color: #48bb78;
+  color: var(--primary-color);
 }
 
 .crafted-text {
-  color: #fcd34d;
+  color: var(--secondary-color);
 }
 
 .content {
@@ -69,7 +86,7 @@ a {
 }
 
 .browse-btn {
-  background-color: #2f855a;
+  background-color: var(--accent-color);
   padding: 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -81,7 +98,7 @@ a {
 }
 
 .browse-btn:hover {
-  background-color: #38a169;
+  background-color: var(--accent-hover-color);
 }
 
 .wrapper {
@@ -100,6 +117,13 @@ a {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.title-theme {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
 .title {
   font-family: 'Merienda', sans-serif;
   font-weight: 400;
@@ -114,7 +138,7 @@ a {
 }
 
 .nav-link:hover {
-  color: #fcd34d;
+  color: var(--secondary-color);
 }
 
 .icon-container {
@@ -135,8 +159,8 @@ a {
   top: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #1a202c;
-  color: #e5e5e5;
+  background-color: var(--footer-bg-color);
+  color: var(--light-bg-color);
 }
 
 .footer-content {
@@ -147,7 +171,7 @@ a {
 
 .footer-heading {
   font-size: 1.25rem;
-  color: #fcd34d;
+  color: var(--secondary-color);
   margin-bottom: 0.5rem;
 }
 
@@ -157,7 +181,7 @@ a {
 }
 
 .footer-group a:hover {
-  color: #fcd34d;
+  color: var(--secondary-color);
 }
 
 .footer-bottom {
@@ -177,8 +201,8 @@ ul li {
 .main-points {
   display: flex;
   flex-direction: column;
-  background-color: #f7fafc;
-  color: #4a5568;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .points-container {
@@ -204,7 +228,7 @@ ul li {
 }
 
 .border-top {
-  border-top: 2px solid #2d3748;
+  border-top: 2px solid var(--border-color);
 }
 
 .description {
@@ -223,7 +247,7 @@ ul li {
   margin: 0 auto;
   margin-bottom: 3rem;
   padding: 1.5rem;
-  background-color: #fcd34d;
+  background-color: var(--secondary-color);
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-size: 1.125rem;
@@ -234,9 +258,51 @@ ul li {
 }
 
 .locate-farms-btn:hover {
-  background-color: #fbbf24;
+  background-color: var(--highlight-color);
 }
 
+.theme-toggle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#theme-icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* Dark mode */
+body.dark-mode .header,
+body.dark-mode .main-points {
+  background-color: #333333;
+}
+
+body.dark-mode .nav-link,
+body.dark-mode .title,
+body.dark-mode .description,
+body.dark-mode .headline,
+body.dark-mode .title {
+  color: var(--dark-text-color);
+}
+
+body.dark-mode .local-span {
+  color: var(--primary-color);
+}
+
+body.dark-mode .crafted-span {
+  color: var(--secondary-color);
+}
+
+body.dark-mode .nav-link:hover {
+  color: var(--secondary-color);
+}
+
+body.dark-mode .point-image {
+  fill: var(--dark-text-color);
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
   .points-container {
     flex-direction: column;
